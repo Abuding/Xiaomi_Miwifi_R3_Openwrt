@@ -55,7 +55,7 @@ jobs:
           cd "$SDK_HOME"
           ./scripts/feeds update packages > /dev/null 2>&1
           ./scripts/feeds install golang > /dev/null 2>&1
-          ln -s "${{ github.workspace }}" "package/$PACKAGE_NAME"
+          git clone https://github.com/chandelures/openwrt-clash package/clash
           make defconfig > /dev/null 2>&1
           make package/${PACKAGE_NAME}/compile V=s > /dev/null
           CLASH_PATH=$(find "$SDK_HOME/bin" -type f -name "${PACKAGE_NAME}_*.ipk")
