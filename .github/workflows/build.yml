@@ -57,7 +57,7 @@ jobs:
           ./scripts/feeds install golang > /dev/null 2>&1
           git clone https://github.com/chandelures/openwrt-clash package/clash
           make defconfig > /dev/null 2>&1
-          make package/${PACKAGE_NAME}/compile V=s > /dev/null
+          make package/${PACKAGE_NAME}/compile V=s -j8 > /dev/null
           CLASH_PATH=$(find "$SDK_HOME/bin" -type f -name "${PACKAGE_NAME}_*.ipk")
           cp -f $CLASH_PATH "${{ github.workspace }}"
           DASHBOARD_PATH=$(find "$SDK_HOME/bin" -type f -name "clash-dashboard_*.ipk")
