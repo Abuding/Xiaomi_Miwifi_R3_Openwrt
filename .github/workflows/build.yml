@@ -55,7 +55,9 @@ jobs:
           cd "$SDK_HOME"
           ./scripts/feeds update packages > /dev/null 2>&1
           ./scripts/feeds install golang > /dev/null 2>&1
-          git clone https://github.com/chandelures/openwrt-clash package/clash
+          wget https://github.com/chandelures/openwrt-clash/archive/refs/tags/v1.11.4-1.zip
+          unzip v1.11.4-1.zip
+          mv openwrt-clash-1.11.4-1 package/clash
           make defconfig > /dev/null 2>&1
           make package/${PACKAGE_NAME}/compile V=s -j8 > /dev/null
           CLASH_PATH=$(find "$SDK_HOME/bin" -type f -name "${PACKAGE_NAME}_*.ipk")
